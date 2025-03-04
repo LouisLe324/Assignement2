@@ -1,3 +1,5 @@
+#Louis Le 2338697
+
 import random
 import sys
 tiles = []
@@ -36,7 +38,6 @@ def findEmptyTile(board):
     return (j, i)
 
 def nextMove(board):
-    print(board)
     emptytile = findEmptyTile(board)
     row, column = emptytile
     while True:
@@ -77,7 +78,6 @@ def nextMove(board):
             print('Please enter a valid move')
         
         
-
 
 def displayBoard(board_lst):
     n = len(board_lst)
