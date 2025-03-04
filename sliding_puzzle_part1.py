@@ -102,6 +102,4 @@ def displayBoard(board_lst):
 
 
 
-        
-nextMove(getNewPuzzle(3))        
     
