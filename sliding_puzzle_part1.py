@@ -2,6 +2,7 @@ import random
 import sys
 tiles = []
 
+
 def tileLabels(n):
     for i in range(0, n**2 -1):
         tiles.append(i + 1)
@@ -27,7 +28,6 @@ def findEmptyTile(board):
     i = 0
     j = 0
     for row in board:
-        print(j)
         for number in row:
             if number == ' ':
                 i = row.index(number)
@@ -35,17 +35,48 @@ def findEmptyTile(board):
 
     return (j, i)
 
-#def nextMove(board):
-#    emptytile = findEmptyTile(board)
-#    while True:
-#        a = ''
-#        b = ''
-#        c = ''
-#        d = ''
-#        if emptytile[0] == 0:
-#        input(f'Enter WASD (or QUIT) : {a}{b}{c}{d}')
+def nextMove(board):
+    print(board)
+    emptytile = findEmptyTile(board)
+    row, column = emptytile
+    while True:
+        W = 'W'
+        A = 'A'
+        S = 'S'
+        D = 'D'
+        if row == 0:
+            W = ''
+        if row == len(board[0]) - 1:
+            S = ''
+        if column == 0:
+            A = ''
+        if column == len(board[0] ) - 1:
+            D = ''
+        command = input(f'Enter WASD (or QUIT): ({W}) ({A}) ({S}) ({D}) ').upper()
 
+        if command == 'QUIT':
+            sys.exit()
 
+        if command == 'W' and W:
+            board[row][column], board[row - 1][column] = board[row - 1][column], board[row][column]
+            return 'W'
+            
+        elif command == 'A' and A:
+           board[row][column], board[row][column - 1] = board[row][column - 1], board[row][column]
+           return 'A'
+
+        elif command == 'S' and S:
+            board[row][column], board[row + 1][column] = board[row + 1][column], board[row][column]
+            return 'S'
+
+        elif command == 'D' and D:
+           board[row][column], board[row][column + 1] = board[row][column + 1], board[row][column]
+           return 'D'
+        
+        else:
+            print('Please enter a valid move')
+        
+        
 
 
 def displayBoard(board_lst):
@@ -72,6 +103,5 @@ def displayBoard(board_lst):
 
 
         
-        
-        
-        
+nextMove(getNewPuzzle(3))        
+    
